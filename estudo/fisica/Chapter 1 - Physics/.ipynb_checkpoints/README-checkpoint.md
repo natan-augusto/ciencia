@@ -1,6 +1,6 @@
 # Python program for converting units to the International System of Units (SI).
 
-An application of the knowledge from the first chapter of Halliday & Resnick book, Fundamentos da Física.
+An application of the knowledge from the first chapter of Jearl Walker's book, Fundamentos da Física.
 
 # How to use:
 
