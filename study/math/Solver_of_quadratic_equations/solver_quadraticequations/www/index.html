@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Quadratic Equation Solver</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+        }
+        .verde { color: #00ff00; }
+        .vermelho { color: #ff0000; }
+        .ciano { color: #00ffff; }
+        .amarelo { color: #ffff00; }
+        
+        input {
+            background-color: black;
+            color: white;
+            border: 1px solid #444;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            padding: 5px;
+            margin: 5px 0;
+        }
+        button {
+            background-color: #333;
+            color: white;
+            border: 1px solid #555;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            padding: 5px 10px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        #tela {
+            border: 1px solid #333;
+            padding: 15px;
+            min-height: 300px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+        }
+        #rodape {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #333;
+            text-align: center;
+        }
+        #rodape a {
+            color: #00ffff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        #rodape a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div id="tela"></div>
+
+<div id="rodape">
+    <span class="amarelo">This application is derived from my original Python code. Read the README.md file.</span><br>
+    <a href="https://github.com/natan-augusto/" target="_blank">GitHub</a> | 
+    <a href="https://www.linkedin.com/in/natan-augusto/" target="_blank">LinkedIn</a>
+</div>
+
+<script>
+    let tela = document.getElementById("tela");
+    let a, b, c;
+
+    function formatar(numero) {
+        if (numero === undefined || numero === null) return '0';
+        return numero.toString().replace(/\./g, ',');
+    }
+
+    function escrever(texto, cor) {
+        if (!texto) texto = '';
+        if (cor === 'verde') {
+            tela.innerHTML += '<span class="verde">' + texto + '</span>';
+        } else if (cor === 'vermelho') {
+            tela.innerHTML += '<span class="vermelho">' + texto + '</span>';
+        } else if (cor === 'ciano') {
+            tela.innerHTML += '<span class="ciano">' + texto + '</span>';
+        } else if (cor === 'amarelo') {
+            tela.innerHTML += '<span class="amarelo">' + texto + '</span>';
+        } else {
+            tela.innerHTML += texto;
+        }
+    }
+
+    function escreverLinha(texto, cor) {
+        escrever(texto, cor);
+        tela.innerHTML += '<br>';
+    }
+
+    function perguntar(mensagem, callback) {
+        escrever(mensagem);
+        
+        // Criar um container para o input e botão
+        let container = document.createElement('div');
+        container.style.marginTop = '5px';
+        container.style.marginBottom = '5px';
+        
+        let campo = document.createElement('input');
+        campo.type = 'number';
+        campo.step = 'any';
+        campo.id = 'campo-input';
+        
+        let botao = document.createElement('button');
+        botao.textContent = 'Enter';
+        botao.style.marginLeft = '10px';
+        
+        container.appendChild(campo);
+        container.appendChild(botao);
+        tela.appendChild(container);
+        
+        campo.focus();
+        
+        function processar() {
+            let valor = parseFloat(campo.value);
+            if (isNaN(valor)) {
+                alert('Digite um número válido!');
+                campo.focus();
+                return;
+            }
+            container.remove();
+            escreverLinha(campo.value);
+            callback(valor);
+        }
+        
+        // CORREÇÃO: Usar onkeydown em vez de addEventListener
+        campo.onkeydown = function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Prevenir comportamento padrão
+                processar();
+            }
+        };
+        
+        botao.onclick = processar;
+    }
+
+    function resolverEquacao() {
+        let equacao = formatar(a) + 'x² ' + formatar(b) + 'x ' + formatar(c);
+        
+        if (b > 0 && c > 0) equacao = formatar(a) + 'x² + ' + formatar(b) + 'x + ' + formatar(c);
+        else if (b > 0 && c < 0) equacao = formatar(a) + 'x² + ' + formatar(b) + 'x ' + formatar(c);
+        else if (b < 0 && c > 0) equacao = formatar(a) + 'x² ' + formatar(b) + 'x + ' + formatar(c);
+        else if (b < 0 && c < 0) equacao = formatar(a) + 'x² ' + formatar(b) + 'x ' + formatar(c);
+        else if (b > 0 && c === 0) equacao = formatar(a) + 'x² + ' + formatar(b) + 'x';
+        else if (b < 0 && c === 0) equacao = formatar(a) + 'x² ' + formatar(b) + 'x';
+        else if (b === 0 && c === 0) equacao = formatar(a) + 'x²';
+        else if (b === 0 && c > 0) equacao = formatar(a) + 'x² + ' + formatar(c);
+        else if (b === 0 && c < 0) equacao = formatar(a) + 'x² ' + formatar(c);
+        
+        escreverLinha();
+        escrever('Quadratic equation to solve: ');
+        escreverLinha(equacao, 'verde');
+        escreverLinha();
+        escreverLinha('Calculating the discriminant...');
+        
+        let discriminante = (b * b) - 4 * a * c;
+        
+        setTimeout(function() {
+            escrever('Discriminant calculated successfully: ');
+            escreverLinha(formatar(discriminante), 'verde');
+            
+            if (discriminante < 0) {
+                setTimeout(function() {
+                    escreverLinha();
+                    escreverLinha("x doesn't exist in the set of real numbers.", 'vermelho');
+                    novaEquacao();
+                }, 1000);
+                return;
+            }
+            
+            if (discriminante === 0) {
+                setTimeout(function() {
+                    escreverLinha();
+                    escreverLinha('It has coincident real roots.');
+                    escreverLinha('x exists in the set of real numbers.', 'verde');
+                    escreverLinha();
+                    escreverLinha('Calculating the roots...');
+                    
+                    setTimeout(function() {
+                        let raiz1 = (-b + Math.sqrt(discriminante)) / (2 * a);
+                        let raiz2 = (-b - Math.sqrt(discriminante)) / (2 * a);
+                        escreverLinha('Roots calculated successfully.', 'verde');
+                        escreverLinha();
+                        escrever('Root 1 (+): ');
+                        escreverLinha(formatar(raiz1), 'verde');
+                        escrever('Root 2 (-): ');
+                        escreverLinha(formatar(raiz2), 'verde');
+                        novaEquacao();
+                    }, 1000);
+                }, 1000);
+                return;
+            }
+            
+            if (discriminante > 0) {
+                setTimeout(function() {
+                    escreverLinha();
+                    escreverLinha('x exists in the set of real numbers.', 'verde');
+                    escreverLinha();
+                    escreverLinha('Calculating the roots...');
+                    
+                    setTimeout(function() {
+                        let raiz1 = (-b + Math.sqrt(discriminante)) / (2 * a);
+                        let raiz2 = (-b - Math.sqrt(discriminante)) / (2 * a);
+                        escreverLinha('Roots calculated successfully.', 'verde');
+                        escreverLinha();
+                        escrever('Root 1 (+): ');
+                        escreverLinha(formatar(raiz1), 'verde');
+                        escrever('Root 2 (-): ');
+                        escreverLinha(formatar(raiz2), 'verde');
+                        novaEquacao();
+                    }, 1000);
+                }, 1000);
+            }
+        }, 1000);
+    }
+
+    function novaEquacao() {
+        escreverLinha('Enter the next equation:');
+        perguntarA();
+    }
+
+    function perguntarA() {
+        perguntar('Specify the quadratic coefficient (a): ', function(valor) {
+            if (valor === 0) {
+                escreverLinha();
+                escreverLinha('Invalid structure for quadratic equation (a≠0)', 'vermelho');
+                perguntarA();
+            } else {
+                a = valor;
+                perguntarB();
+            }
+        });
+    }
+
+    function perguntarB() {
+        perguntar('Specify the linear coefficient (b): ', function(valor) {
+            b = valor;
+            perguntarC();
+        });
+    }
+
+    function perguntarC() {
+        perguntar('Specify the independent term (c): ', function(valor) {
+            c = valor;
+            resolverEquacao();
+        });
+    }
+
+    // Iniciar o programa
+    escreverLinha('Quadratic Equation Solver', 'ciano');
+    escreverLinha();
+    perguntarA();
+</script>
+
+</body>
+</html>

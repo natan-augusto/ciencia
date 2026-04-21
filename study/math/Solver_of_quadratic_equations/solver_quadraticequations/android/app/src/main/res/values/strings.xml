@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Solver of Quadratic Equations</string>
+    <string name="title_activity_main">Solver of Quadratic Equations</string>
+    <string name="package_name">com.natan.quadraticequations</string>
+    <string name="custom_url_scheme">com.natan.quadraticequations</string>
+</resources>

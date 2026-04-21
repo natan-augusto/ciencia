@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Quadratic Equation Solver v2.0</title>
+<style>
+    body {
+        background-color: black;
+        color: white;
+        font-family: monospace;
+        padding: 20px;
+    }
+    #output {
+        white-space: pre-wrap;
+        border: none;
+        background: transparent;
+    }
+    .input-container {
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
+    }
+    .input-container input {
+        background: black;
+        color: white;
+        border: none;
+        outline: none;
+        font-family: monospace;
+        font-size: inherit;
+        width: 200px;
+        margin-left: 5px;
+        caret-color: white;
+    }
+    .green { color: #00ff00; }
+    .red { color: #ff0000; }
+    .cyan { color: #00ffff; }
+    button {
+        background: #333;
+        color: white;
+        border: 1px solid #555;
+        font-family: monospace;
+        padding: 5px 10px;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #444;
+    }
+</style>
+</head>
+<body>
+
+<div id="output"></div>
+
+<script>
+    const outputDiv = document.getElementById("output");
+    let currentStep = 'a';
+    let a, b, c;
+    
+    function format(n) {
+        return n.toString().replace(/\./g, ',');
+    }
+
+    function println(text, colorClass = '') {
+        if (colorClass) {
+            outputDiv.innerHTML += `<span class="${colorClass}">${text}</span><br>`;
+        } else {
+            outputDiv.innerHTML += text + '<br>';
+        }
+    }
+
+    function print(text, colorClass = '') {
+        if (colorClass) {
+            outputDiv.innerHTML += `<span class="${colorClass}">${text}</span>`;
+        } else {
+            outputDiv.innerHTML += text;
+        }
+    }
+
+    function showInput(promptText, callback) {
+        outputDiv.innerHTML += promptText;
+        
+        const container = document.createElement('span');
+        container.className = 'input-container';
+        
+        const inputEl = document.createElement('input');
+        inputEl.type = 'number';
+        inputEl.step = 'any';
+        inputEl.id = 'current-input';
+        
+        const button = document.createElement('button');
+        button.textContent = 'Enter';
+        
+        container.appendChild(inputEl);
+        container.appendChild(button);
+        outputDiv.appendChild(container);
+        
+        inputEl.focus();
+        
+        function handleSubmit() {
+            const value = parseFloat(inputEl.value);
+            if (isNaN(value)) {
+                alert('Please enter a valid number');
+                return;
+            }
+            
+            container.remove();
+            outputDiv.innerHTML += inputEl.value + '<br>';
+            callback(value);
+        }
+        
+        button.addEventListener('click', handleSubmit);
+        inputEl.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleSubmit();
+            }
+        });
+    }
+
+    function solveEquation() {
+        let quadratic_equation = `${format(a)}x² ${format(b)}x ${format(c)}`;
+        if (b>0 && c>0) quadratic_equation = `${format(a)}x² + ${format(b)}x + ${format(c)}`;
+        if (b>0 && c<0) quadratic_equation = `${format(a)}x² + ${format(b)}x ${format(c)}`;
+        if (b<0 && c>0) quadratic_equation = `${format(a)}x² ${format(b)}x + ${format(c)}`;
+        if (b<0 && c<0) quadratic_equation = `${format(a)}x² ${format(b)}x ${format(c)}`;
+        if (b>0 && c === 0) quadratic_equation = `${format(a)}x² + ${format(b)}x`;
+        if (b<0 && c === 0) quadratic_equation = `${format(a)}x² ${format(b)}x`;
+        if (b === 0 && c === 0) quadratic_equation = `${format(a)}x²`;
+        if (b === 0 && c>0) quadratic_equation = `${format(a)}x² + ${format(c)}`;
+        if (b === 0 && c<0) quadratic_equation = `${format(a)}x² ${format(c)}`;
+        
+        println();
+        print(`Quadratic equation to solve: `);
+        println(quadratic_equation, 'green');
+        println();
+        println("Calculating the discriminant...");
+        
+        let discriminant = (b**2) - 4 * a * c;
+        
+        setTimeout(() => {
+            print(`Discriminant calculated successfully: `);
+            println(format(discriminant), 'green');
+            
+            if (discriminant < 0) {
+                setTimeout(() => {
+                    println();
+                    println("x doesn't exist in the set of real numbers.", 'red');
+                    startNewEquation();
+                }, 1000);
+                return;
+            }
+            
+            if (discriminant === 0) {
+                setTimeout(() => {
+                    println();
+                    println("It has coincident real roots.");
+                    println("x exists in the set of real numbers.", 'green');
+                    println();
+                    println("Calculating the roots...");
+                    
+                    setTimeout(() => {
+                        let root1 = (b * -1 + Math.sqrt(discriminant))/(2*a);
+                        let root2 = (b * -1 - Math.sqrt(discriminant))/(2*a);
+                        println("Roots calculated successfully.", 'green');
+                        println();
+                        print(`Root 1 (+): `);
+                        println(format(root1), 'green');
+                        print(`Root 2 (-): `);
+                        println(format(root2), 'green');
+                        startNewEquation();
+                    }, 1000);
+                }, 1000);
+                return;
+            }
+            
+            if (discriminant > 0) {
+                setTimeout(() => {
+                    println();
+                    println("x exists in the set of real numbers.", 'green');
+                    println();
+                    println("Calculating the roots...");
+                    
+                    setTimeout(() => {
+                        let root1 = (b * -1 + Math.sqrt(discriminant))/(2*a);
+                        let root2 = (b * -1 - Math.sqrt(discriminant))/(2*a);
+                        println("Roots calculated successfully.", 'green');
+                        println();
+                        print(`Root 1 (+): `);
+                        println(format(root1), 'green');
+                        print(`Root 2 (-): `);
+                        println(format(root2), 'green');
+                        startNewEquation();
+                    }, 1000);
+                }, 1000);
+            }
+        }, 1000);
+    }
+
+    function startNewEquation() {
+        println("Enter the next equation:");
+        currentStep = 'a';
+        askForA();
+    }
+
+    function askForA() {
+        showInput("Specify the quadratic coefficient (a): ", (value) => {
+            if (value === 0) {
+                println();
+                println("Invalid structure for quadratic equation (a≠0)", 'red');
+                askForA();
+            } else {
+                a = value;
+                askForB();
+            }
+        });
+    }
+
+    function askForB() {
+        showInput("Specify the linear coefficient (b): ", (value) => {
+            b = value;
+            askForC();
+        });
+    }
+
+    function askForC() {
+        showInput("Specify the independent term (c): ", (value) => {
+            c = value;
+            solveEquation();
+        });
+    }
+
+    // Iniciar
+    println("Quadratic Equation Solver", 'cyan');
+    println("Version 2.0", 'cyan');
+    println();
+    askForA();
+</script>
+
+</body>
+</html>
