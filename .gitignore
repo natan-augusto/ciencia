@@ -1,7 +1,7 @@
-# Dependências
+# Dependencies
 **/node_modules/
 
-# Build do Android
+# Android build
 **/android/app/build/
 **/android/build/
 **/android/.gradle/
@@ -13,15 +13,15 @@
 **/.vscode/
 **/*.iml
 
-# Sistema
+# System
 **/.DS_Store
 **/Thumbs.db
 
-# Logs e cache
+# Logs and cache
 **/*.log
 **/.cache/
 
-# APK - NÃO ignorar na pasta /apk
+# APK
 **/*.apk
 !**/apk/*.apk
 !**/apk/**/*.apk
