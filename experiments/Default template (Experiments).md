@@ -12,7 +12,7 @@
 - Main research question
 ---
 
-## 3. Hypothesis
+## 3. Research Question + Hypothesis
 ---
 
 ## 4. Theoretical Background
@@ -41,9 +41,9 @@ Controlled variables:
 <div align="center">
 
 ## 6. Experimental data
-## 7. Data collection with Python
-## 8. Data Analysis
-## 9. Modeling (later)
+## 7. Python Analysis
+## 8. Modeling
+## 9. Visualization with Python
 </div>
 
 ---
@@ -62,4 +62,7 @@ Controlled variables:
 
 - What can be concluded
 - Implications
+---
+
+# 13. References
 ---
