@@ -1,62 +1,73 @@
+<div align="center">
+
 # Science
 
-Home laboratory experiments and scientific simulations 
-documented with the scientific method:
+</div>
+
+Home laboratory experiments, scientific simulations, and study projects documented through the scientific method:
+
 **hypothesis → model → code → data → conclusion**
 
-High school student (2nd year, Rio de Janeiro) building toward 
-a B.Sc. in Physics or Chemistry at a German university.
+High school student from Rio de Janeiro documenting his learning journey in Physics, Chemistry, Mathematics, and Scientific Programming.
 
 ---
 
-## Experiments
+## Repository Structure
 
-| # | Experiment | Area | Status |
-|---|-----------|------|--------|
-| 01 | HCl + metals — reactivity series | Inorganic Chemistry | 🔄 In progress |
-| 02 | Acid-base titration with phenolphthalein | Analytical Chemistry | 🔄 In progress |
-| 03 | Reaction kinetics — temperature vs rate | Physical Chemistry | 🔄 In progress |
-| 04 | Electrolysis with CuSO₄ | Electrochemistry | 🔄 In progress |
+### 📚 Study
+
+Documented study notes, notebooks, and applications based on mathematics, physics, chemistry, and programming.
+
+Current topics include:
+
+- Mathematical logic
+- Functions
+- Scientific Python
+- Mathematics (FME)
+
+### 🧪 Experiments
+
+Experimental chemistry projects and laboratory reports.
+
+Currently being prepared.
 
 ---
 
-## Simulations
+## Current Focus
 
-| # | Simulation | Area | Status |
-|---|-----------|------|--------|
-| 01 | Free fall with air resistance | Mechanics | 🔄 In progress |
-| 02 | Acid-base titration curve | Analytical Chemistry | 🔄 In progress |
-| 03 | Arrhenius equation — k vs temperature | Physical Chemistry | 🔄 In progress |
-
----
-
-## Study
-
-Theoretical foundations being studied in parallel:
-
-- 📐 Mathematics: pre-calculus → calculus → linear algebra
-- ⚛️ Physics: Feynman Lectures vol.1 → Griffiths
-- 🧪 Chemistry: Chang → Atkins → Clayden
+- Mathematics (FME)
+- Scientific Python
+- Experimental chemistry
+- Physics fundamentals
+- German language studies
 
 ---
 
 ## Lab Setup
 
-- HCl 1N, NaOH, phenolphthalein PA
-- Basic glassware: beaker, Erlenmeyer, test tubes
-- Arduino Uno + DS18B20 temperature sensor
-- Precision balance 0.001g + 0.01g
+### Equipment
+
+- Test tubes
+- Beaker
+- Erlenmeyer flask
+- Graduated cylinder
+- Glass stirring rod
+- Wash bottle
+- Glass pipette
+
+### Safety
+
+- Safety goggles
+- Nitrile gloves
+- Protective clothing
+
+### Reagents
+
+- Hydrochloric acid (HCl 1N 1L)
+- Phenolphthalein PA (25g)
 
 ---
 
-## Stack
+## Goal
 
-- Python + Jupyter Notebooks
-- NumPy, Matplotlib, SciPy
-- Arduino + pyserial
-
----
-
-## Related
-
-Python learning: [scientific-python](https://github.com/natan-augusto/scientific-python)
+Build a solid foundation in science, mathematics, and computing through study, experimentation, and documentation.
