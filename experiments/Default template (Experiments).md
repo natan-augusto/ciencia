@@ -12,16 +12,19 @@
 - Main research question
 ---
 
-## 3. Research Question + Hypothesis
+## 3. Research Question
 ---
 
-## 4. Theoretical Background
+## 4. Hypothesis
+---
+
+## 5. Theoretical Background
 
 - Physical/chemical concepts involved
 - Mathematical relationship (if any)
 ---
 
-## 5. Methodology
+## 6. Methodology
 
 - Materials used
 - Step-by-step procedure
@@ -35,34 +38,35 @@ Dependent variables:
 
 Controlled variables:
 (kept constant to ensure the validity of the experiment)
+---
 
+## 7. Safety Considerations (Optional)
 ---
 
 <div align="center">
 
-## 6. Experimental data
-## 7. Python Analysis
-## 8. Modeling
-## 9. Visualization with Python
+## 8. Python Analysis
+## 9. Modeling
+## 10. Visualization with Python
 </div>
 
 ---
 
-# 10. Results
+# 11. Results
 ---
 
-# 11. Discussion
+# 12. Discussion
 
 - Do the results confirm the hypothesis?
 - Are there any experimental errors?
 - What could be improved?
 ---
 
-# 12. Conclusion
+# 13. Conclusion
 
 - What can be concluded
 - Implications
 ---
 
-# 13. References
+# 14. References
 ---
